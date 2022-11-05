@@ -1,6 +1,8 @@
 import { Card } from "../../../components/Card"
+import { useTodoContext } from "../../../hooks/useTodoContext"
 
-export const TodoList = ({todos}) => {
+export const TodoList = () => {
+  const { todos } = useTodoContext();
   const css = {
     display: 'flex',
     flexDirection: 'column',
