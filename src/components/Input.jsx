@@ -1,4 +1,4 @@
-export const Input = ({value, placeholder, onChange, onKeyDown}) => {
+export const Input = (props) => {
   const css = {
     padding: '4px 8px',
     borderRadius: '4px',
@@ -9,6 +9,6 @@ export const Input = ({value, placeholder, onChange, onKeyDown}) => {
   }
 
   return (
-    <input value={value} onChange={onChange} style={css} placeholder={placeholder} type={'text'} onKeyDown={onKeyDown}/>
+    <input style={css} type={'text'} {...props}/>
   )
 }
