@@ -16,7 +16,7 @@ export const TodoList = () => {
     <div style={css}>
       {todos.map(todo => {
         return (
-          <Card user={todo.user} content={todo.content} createAt={todo.createAt} key={todo.id} onIconClick={onIconClick} id={todo.id} />
+          <Card user={todo.user} content={todo.content} createAt={todo.createAt} key={todo.id} onIconClick={() => onIconClick(todo.id)} />
         )
       })}
     </div>
