@@ -7,9 +7,16 @@ const TodoProvider = ({children}) => {
   const addTodo = (newTodo) => {
     setTodos([newTodo, ...todos]);
   }
+  const deleteTodo = (id) => {
+    const newTodos = todos.filter(todo => {
+      return todo.id !== id;
+    });
+    setTodos(newTodos);
+  }
   const providerValues = {
     todos,
     addTodo,
+    deleteTodo,
   };
 
   return (

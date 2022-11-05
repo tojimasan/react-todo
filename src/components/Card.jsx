@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Avatar } from "./Avatar";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
-export const Card = ({content, user, createAt}) => {
+export const Card = ({content, user, createAt, onIconClick}) => {
   const [isHover, setIsHover] = useState(false);
-  const onIsHover = () => {
-    setIsHover(prev => !prev);
-  }
   const css = {
+    position: 'relative',
     padding: '16px 24px',
     minHeight: '100px',
     boxShadow: '0 0 4px rgba(0, 0, 0, 0.1)',
@@ -19,9 +18,16 @@ export const Card = ({content, user, createAt}) => {
     justifyContent: 'space-between',
     fontWeight: 'bold',
   }
+  const deleteIconCss = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    opacity: '0.8',
+  }
 
   return (
-    <div onMouseEnter={onIsHover} onMouseLeave={onIsHover} style={css}>
+    <div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} style={css}>
+      {isHover && <AiOutlineCloseCircle as='button' style={deleteIconCss} onClick={onIconClick} />}
       {content}
       {user && (
         <div style={{display: 'flex', flexDirection: 'row', gap: '16px', alignItems: 'center'}}>
@@ -33,5 +39,5 @@ export const Card = ({content, user, createAt}) => {
         </div>
       )}
     </div>
-  )
+  );
 }
