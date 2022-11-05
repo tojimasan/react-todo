@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Input } from "../../../components/Input";
+import { useTodoContext } from "../../../hooks/useTodoContext";
 
-export const TodoInput = ({onEnter}) => {
+export const TodoInput = () => {
+  const { addTodo } = useTodoContext();
   const [content, setContent] = useState('');
   const user = {
     id: uuidv4(),
@@ -20,7 +22,7 @@ export const TodoInput = ({onEnter}) => {
         content,
         createAt: new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }),
       };
-      onEnter(newTodo)
+      addTodo(newTodo);
       setContent('');
     }
   }

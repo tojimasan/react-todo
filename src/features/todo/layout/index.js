@@ -1,14 +1,9 @@
-import { useContext } from 'react';
-import { TodoContext } from '../../../App';
+import { useTodoContext } from '../../../hooks/useTodoContext';
 import { TodoInput } from '../components/TodoInput';
 import { TodoList } from '../components/TodoList';
 
 export const Todo = () => {
-  const {todos ,setTodos} = useContext(TodoContext);
-  const onEnter = (newTodo) => {
-    setTodos([newTodo, ...todos]);
-  }
-
+  const { todos } = useTodoContext();
   const css = {
     height: 'fit-content',
     width: '300px',
@@ -23,8 +18,8 @@ export const Todo = () => {
 
   return (
     <div style={css}>
-      <TodoInput onEnter={onEnter} />
-      <TodoList todos={todos} />
+      <TodoInput />
+      {todos.length >= 1 && <TodoList />}
     </div>
   )
 }
