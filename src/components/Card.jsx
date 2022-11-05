@@ -4,9 +4,6 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export const Card = ({content, user, createAt, onIconClick, id}) => {
   const [isHover, setIsHover] = useState(false);
-  const onIsHover = () => {
-    setIsHover(prev => !prev);
-  }
   const css = {
     position: 'relative',
     padding: '16px 24px',
@@ -29,7 +26,7 @@ export const Card = ({content, user, createAt, onIconClick, id}) => {
   }
 
   return (
-    <div onMouseEnter={onIsHover} onMouseLeave={onIsHover} style={css}>
+    <div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} style={css}>
       {isHover && <AiOutlineCloseCircle as='button' style={deleteIconCss} onClick={() => onIconClick(id)} />}
       {content}
       {user && (
