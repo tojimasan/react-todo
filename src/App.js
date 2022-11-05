@@ -1,10 +1,8 @@
 import './App.css';
-import { Todo } from './components/Todo';
-import { Card } from './components/Card';
-import { Input } from './components/Input';
+import { Todo } from './features/todo';
 import { createContext, useState } from 'react';
 
-const TodoContext = createContext([]);
+export const TodoContext = createContext([]);
 const todoList = [
   {
     id: 1,
@@ -30,21 +28,11 @@ const todoList = [
 
 const App = () => {
   const [todos, setTodos] = useState(todoList);
-  const handleOnEnter = (newTodo) => {
-    setTodos([newTodo, ...todos]);
-  }
 
   return (
     <div className="App">
       <TodoContext.Provider value={{todos, setTodos}}>
-        <Todo>
-            <Input onEnter={handleOnEnter} />
-            {todos.map(todo => {
-              return (
-                <Card user={todo.user} content={todo.content} createAt={todo.createAt} key={todo.id} />
-              );
-            })}
-          </Todo>
+        <Todo todos={todos}/>
       </TodoContext.Provider>
     </div>
   );
